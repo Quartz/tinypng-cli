@@ -8,6 +8,7 @@ var uniq = require("array-uniq");
 var chalk = require("chalk");
 var pretty = require("prettysize");
 var md5File = require("md5-file");
+var path = require("path");
 
 var argv = require("minimist")(process.argv.slice(2));
 var home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
@@ -79,7 +80,7 @@ if (argv.v || argv.version) {
             : home + "/.tinypng.cache.json";
 
     if (fs.existsSync(cacheMapLocation)) {
-        cacheMap = require(cacheMapLocation);
+        cacheMap = require(path.resolve(cacheMapLocation));
         if (typeof cacheMap !== "object") {
             cacheMap = {};
         }
